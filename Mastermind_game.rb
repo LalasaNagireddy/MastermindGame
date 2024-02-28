@@ -74,7 +74,7 @@ game = Game.new(player, code_length)
 
 until game.game_over?
   puts "Attempts left: #{game.attempts_left}"
-  puts "Make a guess (e.g., for code length #{code_length}, guess 'RGBY' or 'RGBYOP' etc.):"
+  puts "Make a guess (e.g., for code length #{code_length}, guess 'RGBY' or 'RGBYOP' or 'RGBYOPSW' etc.):"
   guess = gets.chomp.upcase.split('')
   feedback = game.make_guess(guess)
   puts "Feedback: #{feedback[0]} black peg(s) and #{feedback[1]} white peg(s)"
