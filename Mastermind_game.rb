@@ -28,8 +28,8 @@ class Game
   end
   
   def generate_secret_code
-    colors = ['R', 'G', 'B', 'Y', 'P', 'O', 'W', 'S'] # Example set of colors
-    Array.new(@code_length) { colors.sample } # Generate a random code of specified length
+    colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple', 'Orange', 'White', 'Silver']
+    Array.new(@code_length) { colors.sample }
   end
   
   def make_guess(guess)
@@ -72,17 +72,22 @@ end
 
 game = Game.new(player, code_length)
 
+puts "Available colors: Red, Green, Blue, Yellow, Purple, Orange, White, Silver"
+
 until game.game_over?
   puts "Attempts left: #{game.attempts_left}"
-  puts "Make a guess (e.g., for code length #{code_length}, guess 'RGBY' or 'RGBYOP' or 'RGBYOPSW' etc.):"
-  guess = gets.chomp.upcase.split('')
+  puts "Make a guess by typing a sequence of colors separated by spaces."
+  puts "For example, for a code length of #{code_length}, you could guess:"
+  puts "Red Green Blue Yellow" if code_length == 4
+  puts "Red Green Blue Yellow Purple Orange" if code_length == 6
+  puts "Red Green Blue Yellow Purple Orange White Silver" if code_length == 8
+  guess = gets.chomp.split.map(&:capitalize)
   feedback = game.make_guess(guess)
   puts "Feedback: #{feedback[0]} black peg(s) and #{feedback[1]} white peg(s)"
 end
 
 if ((feedback[0] == 4) or (feedback[0] == 6) or (feedback[0] == 8))
-  puts "Congratulations, #{player_name}! You guessed the secret code #{game.secret_code.sequence.join}!"
+  puts "Congratulations, #{player_name}! You guessed the secret code #{game.secret_code.sequence.join(' ')}!"
 else
-  puts "Game over. You ran out of attempts. The secret code was #{game.secret_code.sequence.join}."
+  puts "Game over. You ran out of attempts. The secret code was #{game.secret_code.sequence.join(' ')}."
 end
-
