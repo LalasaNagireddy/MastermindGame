@@ -82,15 +82,16 @@ allow_duplicates = gets.chomp.downcase == 'yes'
 game = Game.new(player, code_length, allow_duplicates)
 
 puts "Available colors: Red, Green, Blue, Yellow, Purple, Orange, White, Silver"
-puts "Make a guess by typing a sequence of colors separated by spaces."
-puts "For example, for a code length of #{code_length}, you could guess:"
-example_colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple', 'Orange', 'White', 'Silver']
-puts example_colors.take(code_length).join(' ')
 
 puts "\nFeedback Explanation:"
 puts "After each guess, you will receive feedback in the form of black and white pegs."
 puts "- Black pegs indicate the number of colors that are correct and in the correct position."
 puts "- White pegs indicate the number of colors that are correct but in the wrong position.\n"
+
+puts "Make a guess by typing a sequence of colors separated by spaces."
+puts "For example, for a code length of #{code_length}, you could guess:"
+example_colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple', 'Orange', 'White', 'Silver']
+puts example_colors.take(code_length).join(' ')
 
 until game.game_over?
   puts "Attempts left: #{game.attempts_left}"
